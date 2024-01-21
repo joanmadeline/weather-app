@@ -42,7 +42,7 @@ const Weather = () => {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
       <div className="">
         <LocationSearch
           fetchData={fetchData}
@@ -57,7 +57,7 @@ const Weather = () => {
                 {weatherData.current.temp_c}°
               </h1>
               <img
-                className="inline-block relative top-2.5 right-3.5"
+                className="inline-block relative top-2.5 left-0"
                 src={weatherData.current.condition.icon}
                 alt={weatherData.current.condition.text}
               />
@@ -86,7 +86,8 @@ const Weather = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mt-10 md:mt-0 text-left">
+        <p className="text-3xl font-medium mb-4">7-Day Forecast</p>
         <Forecast
           key={weatherData.location.name}
           location={weatherData.location.name}

@@ -39,8 +39,6 @@ const Forecast = ({ location }) => {
 
   return (
     <div>
-      <p>Weather Forecast</p>
-      <p>{forecastWeather.location.name}</p>
       {forecastWeather.forecast.forecastday.map((forecastDay) => {
         return (
           <p>
