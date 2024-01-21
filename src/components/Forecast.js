@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 const Forecast = ({ location }) => {
   const [forecastWeather, setforecastWeather] = useState(null);
-  //   const [searchLocation, setSearchLocation] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -40,8 +39,8 @@ const Forecast = ({ location }) => {
 
   return (
     <div>
-      <br />
       <p>Weather Forecast</p>
+      <p>{forecastWeather.location.name}</p>
       {forecastWeather.forecast.forecastday.map((forecastDay) => {
         return (
           <p>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import LocationSearch from "./LocationSearch";
 import Forecast from "./Forecast";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
-  const [searchLocation, setSearchLocation] = useState("");
+  // const [searchLocation, setSearchLocation] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,16 +28,8 @@ const Weather = () => {
     }
   };
 
-  const handleInputChange = (e) => setSearchLocation(e.target.value);
-
-  const handleSearch = () => {
-    // You can add validation for searchLocation here if needed
-    setLoading(true);
-    fetchData(searchLocation);
-  };
-
   useEffect(() => {
-    // Fetch data on initial mount with a default location or use a default location of your choice
+    // Fetch data on initial mount with a default location or use a default location of choice
     fetchData("auto:ip");
   }, []); // Empty dependency array ensures the effect runs once after the initial render
 
@@ -48,23 +42,56 @@ const Weather = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          value={searchLocation}
-          placeholder="Enter location"
-          onChange={handleInputChange}
+    <div className="grid grid-cols-2 gap-4">
+      <div className="">
+        <LocationSearch
+          fetchData={fetchData}
+          setLoading={setLoading}
+          currentLocation={weatherData.location.name}
         />
-        <button type="submit">Get Weather</button>
-      </form>
-      <p>Location: {weatherData.location.name}</p>
-      <p>Temperature: {weatherData.current.temp_c}</p>
-      <p>Feels like: {weatherData.current.feelslike_c}</p>
-      <Forecast
-        key={weatherData.location.name}
-        location={weatherData.location.name}
-      />
+        <div className="grid grid-cols-2 gap-4">
+          <div className="text-left px-2 mt-10">
+            <p className="font-medium mb-2">Now</p>
+            <div className="mb-1">
+              <h1 className="text-6xl inline-block align-middle font-medium">
+                {weatherData.current.temp_c}°
+              </h1>
+              <img
+                className="inline-block relative top-2.5 right-3.5"
+                src={weatherData.current.condition.icon}
+                alt={weatherData.current.condition.text}
+              />
+            </div>
+            <p className="text-sm leading-tight">
+              Last Updated
+              <br />
+              {weatherData.current.last_updated}
+            </p>
+          </div>
+          <div className="text-right px-2 mt-10">
+            <p className="font-medium mb-1">
+              {weatherData.current.condition.text}
+            </p>
+            <p className="text-sm">
+              Feels like {weatherData.current.feelslike_c}°
+            </p>
+            <div>
+              <p className="inline-block align-middle mr-1">
+                <FaLocationDot />
+              </p>
+              <p className="inline-block align-middle mt-0.5">
+                {weatherData.location.name}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <Forecast
+          key={weatherData.location.name}
+          location={weatherData.location.name}
+        />
+      </div>
     </div>
   );
 };
