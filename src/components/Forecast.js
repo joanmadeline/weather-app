@@ -8,7 +8,7 @@ const Forecast = ({ location }) => {
   const fetchData = async (location) => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=6665e08023e147aeacb104104241801&q=${location}&days=7`
+        `https://api.weatherapi.com/v1/forecast.json?key=6665e08023e147aeacb104104241801&q=${location}&days=7`
       );
 
       if (!response.ok) {
