@@ -41,7 +41,7 @@ const Forecast = ({ location }) => {
     <div>
       {forecastWeather.forecast.forecastday.map((forecastDay) => {
         return (
-          <p>
+          <p key={forecastDay.date}>
             {forecastDay.date}: {forecastDay.day.avgtemp_c}°C
           </p>
         );

@@ -6,8 +6,8 @@ const LocationSearch = ({ setLoading, fetchData, currentLocation }) => {
 
   const handleInputChange = (e) => setSearchLocation(e.target.value);
 
-  const handleSearch = () => {
-    console.log("e");
+  const handleSearch = (e) => {
+    e.preventDefault();
     // You can add validation for searchLocation here if needed
     setLoading(true);
     fetchData(searchLocation);
