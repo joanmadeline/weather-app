@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 const Forecast = ({ location }) => {
   const [forecastWeather, setforecastWeather] = useState(null);
@@ -8,7 +9,7 @@ const Forecast = ({ location }) => {
   const fetchData = async (location) => {
     try {
       const response = await fetch(
-        `https://api.weatherapi.com/v1/forecast.json?key=6665e08023e147aeacb104104241801&q=${location}&days=7`
+        `https://api.weatherapi.com/v1/forecast.json?key=6665e08023e147aeacb104104241801&q=${location}&days=10`
       );
 
       if (!response.ok) {
@@ -41,9 +42,27 @@ const Forecast = ({ location }) => {
     <div>
       {forecastWeather.forecast.forecastday.map((forecastDay) => {
         return (
-          <p key={forecastDay.date}>
-            {forecastDay.date}: {forecastDay.day.avgtemp_c}°C
-          </p>
+          <div
+            key={forecastDay.date}
+            className="flex flex-row items-center bg-transparent_black py-1 px-4 mb-2 rounded-md"
+          >
+            <div className="forecast-day">
+              <p>{moment(forecastDay.date).format("dddd")}</p>
+            </div>
+            <div className="forecast-icon">
+              <img
+                className="h-10"
+                src={forecastDay.day.condition.icon}
+                alt={forecastDay.day.condition.text}
+              />
+            </div>
+            <div className="forecast-temp">
+              <p>
+                {Math.round(forecastDay.day.maxtemp_c)}° /{" "}
+                {Math.round(forecastDay.day.mintemp_c)}°
+              </p>
+            </div>
+          </div>
         );
       })}
     </div>

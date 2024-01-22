@@ -69,7 +69,7 @@ const Weather = () => {
             </p>
           </div>
           <div className="text-right px-2 mt-10">
-            <p className="font-medium mb-1">
+            <p className="font-medium mb-1 capitalize">
               {weatherData.current.condition.text}
             </p>
             <p className="text-sm">
@@ -86,8 +86,8 @@ const Weather = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10 md:mt-0 text-left">
-        <p className="text-3xl font-medium mb-4">7-Day Forecast</p>
+      <div className="mt-5 md:mt-0 text-left">
+        <p className="text-3xl font-medium mb-4">10-Day Forecast</p>
         <Forecast
           key={weatherData.location.name}
           location={weatherData.location.name}
