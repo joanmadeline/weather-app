@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
+var strftime = require("strftime");
 
 const Forecast = ({ location }) => {
-  const [forecastWeather, setforecastWeather] = useState(null);
+  const [forecastWeather, setForecastWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,7 +18,7 @@ const Forecast = ({ location }) => {
       }
 
       const result = await response.json();
-      setforecastWeather(result);
+      setForecastWeather(result);
     } catch (error) {
       setError(error);
     } finally {
@@ -38,14 +39,29 @@ const Forecast = ({ location }) => {
     return <div>Error: {error.message}</div>;
   }
 
+  const hideOrShow = (e) => {
+    console.log(e);
+    const forecast = document.querySelectorAll(".forecast");
+
+    if (forecast[e].classList.contains("active")) {
+      forecast[e].classList.remove("active");
+    } else {
+      forecast.forEach((element) => {
+        element.classList.remove("active");
+      });
+      forecast[e].classList.add("active");
+    }
+  };
+
   return (
     <div>
-      {forecastWeather.forecast.forecastday.map((forecastDay) => {
-        return (
-          <div
-            key={forecastDay.date}
-            className="flex flex-row items-center bg-transparent_black py-1 px-4 mb-2 rounded-md"
-          >
+      {forecastWeather.forecast.forecastday.map((forecastDay, index) => (
+        <div
+          className="forecast bg-transparent_black p-4 pt-2 mb-2 rounded-md"
+          key={index}
+          onClick={() => hideOrShow(index)}
+        >
+          <div className="flex flex-row items-center font-medium">
             <div className="forecast-day">
               <p>{moment(forecastDay.date).format("dddd")}</p>
             </div>
@@ -63,8 +79,28 @@ const Forecast = ({ location }) => {
               </p>
             </div>
           </div>
-        );
-      })}
+          <div className="forecast-hourly overflow-scroll">
+            <p className="font-medium mb-2">Hourly forecast</p>
+            <div className="flex">
+              {forecastDay.hour.map((hour, i) => {
+                var epochTimestamp = hour.time_epoch;
+                var date = new Date(epochTimestamp * 1000);
+
+                return (
+                  <div className="w-12 text-center flex-none" key={i}>
+                    <p className="text-sm">{Math.round(hour.temp_c)}°</p>
+                    <img src={hour.condition.icon} alt={hour.condition.text} />
+                    <p className="text-sm">
+                      {strftime("%l%P", new Date(date))}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="forecast-details"></div>
+        </div>
+      ))}
     </div>
   );
 };

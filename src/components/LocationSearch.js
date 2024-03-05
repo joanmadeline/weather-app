@@ -15,17 +15,18 @@ const LocationSearch = ({ setLoading, fetchData, currentLocation }) => {
 
   return (
     <div>
+      {/* <p className="font-medium mb-2">Enter a city name</p> */}
       <form onSubmit={handleSearch}>
         <input
           type="text"
           value={searchLocation}
           placeholder={`${currentLocation}`}
           onChange={handleInputChange}
-          className="w-11/12 py-2 px-6 align-middle bg-transparent_black rounded-l-full"
+          className="w-11/12 2xl:w-5/6 py-2 px-6 align-middle bg-transparent_black rounded-l-full"
         />
         <button
           type="submit"
-          className="w-1/12 bg-primary h-10 py-2 align-middle bg-transparent_black rounded-r-full"
+          className="w-1/12 2xl:w-1/6 bg-primary h-10 py-2 align-middle bg-transparent_black rounded-r-full"
         >
           <FaSearch className="mx-auto" />
         </button>

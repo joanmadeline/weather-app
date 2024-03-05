@@ -10,3 +10,7 @@
   width: calc(30% - 20px);
   text-align: right;
 }
+
+.forecast-hourly::-webkit-scrollbar {
+  display: none;
+}

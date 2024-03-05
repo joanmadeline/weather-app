@@ -42,8 +42,8 @@ const Weather = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-      <div className="">
+    <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8 md:gap-16">
+      <div className="w-full">
         <LocationSearch
           fetchData={fetchData}
           setLoading={setLoading}
@@ -86,8 +86,8 @@ const Weather = () => {
           </div>
         </div>
       </div>
-      <div className="mt-5 md:mt-0 text-left">
-        <p className="text-3xl font-medium mb-4">10-Day Forecast</p>
+      <div className="2xl:col-span-2 mt-5 md:mt-0 text-left">
+        <p className="text-3xl font-medium mb-4">3-Day Forecast</p>
         <Forecast
           key={weatherData.location.name}
           location={weatherData.location.name}
