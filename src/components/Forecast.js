@@ -79,7 +79,7 @@ const Forecast = ({ location }) => {
           </div>
           <div className="forecast-info py-2">
             <p className="font-medium text-sm mb-2">Hourly forecast</p>
-            <div className="forecast-hourly overflow-scroll">
+            <div className="forecast-container hourly overflow-scroll">
               <div className="flex">
                 {forecastDay.hour.map((hour, i) => {
                   var epochTimestamp = hour.time_epoch;
@@ -87,20 +87,66 @@ const Forecast = ({ location }) => {
 
                   return (
                     <div className="w-12 text-center flex-none" key={i}>
-                      <p className="text-sm">{Math.round(hour.temp_c)}°</p>
+                      <p>{Math.round(hour.temp_c)}°</p>
                       <img
                         src={hour.condition.icon}
                         alt={hour.condition.text}
                       />
-                      <p className="text-sm">
-                        {strftime("%l%P", new Date(date))}
-                      </p>
+                      <p>{strftime("%l%P", new Date(date))}</p>
                     </div>
                   );
                 })}
               </div>
             </div>
-            <div className="forecast-details"></div>
+            <div className="forecast-conditions mt-3">
+              <p className="font-medium text-sm">Daily conditions</p>
+              <div className="grid grid-cols-2 gap-2 mt-2">
+                <div className="forecast-container">
+                  <p className="font-medium">Max wind</p>
+                  <p className="leading-none mt-2">
+                    <span className="text-xl leading-none">
+                      {Math.round(forecastDay.day.maxwind_kph)}
+                    </span>
+                    <span className="text-xs ml-1">km/h</span>
+                  </p>
+                </div>
+                <div className="forecast-container">
+                  <p className="font-medium">Average humidity</p>
+                  <p className="leading-none mt-2">
+                    <span className="text-xl leading-none">
+                      {forecastDay.day.avghumidity}%
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2 mt-2">
+                <div className="forecast-container">
+                  <p className="font-medium">Max UV index</p>
+                  <p className="leading-none mt-2">
+                    <span className="text-xl leading-none">
+                      {forecastDay.day.uv}
+                    </span>
+                  </p>
+                </div>
+                <div className="forecast-container">
+                  <p className="font-medium">Sunrise & sunset</p>
+                  <p className="leading-none mt-2">
+                    <span className="text-xl leading-none lowercase">
+                      {forecastDay.astro.sunrise}
+                    </span>
+                    <br />
+                    <span className="text-xs">Sunrise</span>
+                  </p>
+                  <p className="leading-none mt-2">
+                    <span className="text-xl leading-none lowercase">
+                      {forecastDay.astro.sunset}
+                    </span>
+                    <br />
+                    <span className="text-xs">Sunset</span>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ))}

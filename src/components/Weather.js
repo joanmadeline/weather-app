@@ -11,6 +11,9 @@ const Weather = () => {
 
   const fetchData = async (location) => {
     try {
+      if (location === "") {
+        location = "auto:ip";
+      }
       const response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=6665e08023e147aeacb104104241801&q=${location}`
       );
