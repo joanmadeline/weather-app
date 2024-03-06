@@ -8,15 +8,35 @@ body {
   font-family: "Jost", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(29, 113, 242);
+  /* background: rgb(29, 113, 242);
+  background: linear-gradient(
+    90deg,
+    rgba(29, 113, 242, 1) 0%,
+    rgba(28, 156, 246, 1) 50%,
+    rgba(25, 195, 251, 1) 100%
+  ); */
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+body.isDay {
   background: linear-gradient(
     90deg,
     rgba(29, 113, 242, 1) 0%,
     rgba(28, 156, 246, 1) 50%,
     rgba(25, 195, 251, 1) 100%
   );
-  color: #ffffff;
-  overflow-x: hidden;
+}
+
+body.isNight {
+  background: linear-gradient(
+    90deg,
+    #191970 0%,
+    #1f1d68 25%,
+    #252160 50%,
+    #2b2758 75%,
+    #2e294e 100%
+  );
 }
 
 .bg-overlay {

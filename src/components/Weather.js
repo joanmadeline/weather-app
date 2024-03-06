@@ -41,6 +41,14 @@ const Weather = () => {
     return <div>Error: {error.message}</div>;
   }
 
+  if (weatherData.current.is_day === 1) {
+    document.querySelector("body").classList.remove("isNight");
+    document.querySelector("body").classList.add("isDay");
+  } else if (weatherData.current.is_day === 0) {
+    document.querySelector("body").classList.remove("isDay");
+    document.querySelector("body").classList.add("isNight");
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8 md:gap-16">
       <div className="w-full">

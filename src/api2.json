@@ -1,0 +1,41 @@
+{
+  "location": {
+    "name": "Melbourne",
+    "region": "Victoria",
+    "country": "Australia",
+    "lat": -37.82,
+    "lon": 144.97,
+    "tz_id": "Australia/Melbourne",
+    "localtime_epoch": 1709720929,
+    "localtime": "2024-03-06 21:28"
+  },
+  "current": {
+    "last_updated_epoch": 1709720100,
+    "last_updated": "2024-03-06 21:15",
+    "temp_c": 18.0,
+    "temp_f": 64.4,
+    "is_day": 0,
+    "condition": {
+      "text": "Partly cloudy",
+      "icon": "//cdn.weatherapi.com/weather/64x64/night/116.png",
+      "code": 1003
+    },
+    "wind_mph": 12.5,
+    "wind_kph": 20.2,
+    "wind_degree": 200,
+    "wind_dir": "SSW",
+    "pressure_mb": 1021.0,
+    "pressure_in": 30.15,
+    "precip_mm": 0.0,
+    "precip_in": 0.0,
+    "humidity": 77,
+    "cloud": 25,
+    "feelslike_c": 18.0,
+    "feelslike_f": 64.4,
+    "vis_km": 10.0,
+    "vis_miles": 6.0,
+    "uv": 1.0,
+    "gust_mph": 12.8,
+    "gust_kph": 20.6
+  }
+}

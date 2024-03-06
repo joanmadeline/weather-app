@@ -1,14 +1,45 @@
 .forecast-day {
-  width: calc(70% - 20px);
+  /* width: 70%; */
 }
+
+/* .forecast {
+  max-height: 56px;
+  transition: max-height 10s ease;
+  overflow: hidden;
+}
+
+.forecast.active {
+  max-height: unset;
+} */
 
 .forecast-icon {
   width: 40px;
+  margin-right: 1rem;
+  display: inline-block;
 }
 
 .forecast-temp {
-  width: calc(30% - 20px);
+  /* width: 30%; */
   text-align: right;
+  display: inline-block;
+}
+
+.forecast-info {
+  display: none;
+  /* opacity: 0;
+  transform: translate(9999px); */
+  /* transition: opacity 0.2s linear; */
+  /* height: 0; */
+  /* overflow: hidden; */
+
+  /* transition: 0.5s; */
+}
+
+.active .forecast-info {
+  display: block;
+  /* opacity: 1;
+  transform: translate(0); */
+  /* height: unset; */
 }
 
 .forecast-hourly::-webkit-scrollbar {

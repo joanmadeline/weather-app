@@ -57,48 +57,51 @@ const Forecast = ({ location }) => {
     <div>
       {forecastWeather.forecast.forecastday.map((forecastDay, index) => (
         <div
-          className="forecast bg-transparent_black p-4 pt-2 mb-2 rounded-md"
+          className="forecast bg-transparent_black px-4 py-2 mb-2 rounded-md cursor-pointer"
           key={index}
           onClick={() => hideOrShow(index)}
         >
-          <div className="flex flex-row items-center font-medium">
+          <div className="flex flex-row items-center justify-between font-medium">
             <div className="forecast-day">
               <p>{moment(forecastDay.date).format("dddd")}</p>
             </div>
-            <div className="forecast-icon">
+            <div className="forecast-temp">
               <img
-                className="h-10"
+                className="forecast-icon h-10"
                 src={forecastDay.day.condition.icon}
                 alt={forecastDay.day.condition.text}
               />
-            </div>
-            <div className="forecast-temp">
-              <p>
+              <p className="inline-block">
                 {Math.round(forecastDay.day.maxtemp_c)}° /{" "}
                 {Math.round(forecastDay.day.mintemp_c)}°
               </p>
             </div>
           </div>
-          <div className="forecast-hourly overflow-scroll">
-            <p className="font-medium mb-2">Hourly forecast</p>
-            <div className="flex">
-              {forecastDay.hour.map((hour, i) => {
-                var epochTimestamp = hour.time_epoch;
-                var date = new Date(epochTimestamp * 1000);
+          <div className="forecast-info py-2">
+            <p className="font-medium text-sm mb-2">Hourly forecast</p>
+            <div className="forecast-hourly overflow-scroll">
+              <div className="flex">
+                {forecastDay.hour.map((hour, i) => {
+                  var epochTimestamp = hour.time_epoch;
+                  var date = new Date(epochTimestamp * 1000);
 
-                return (
-                  <div className="w-12 text-center flex-none" key={i}>
-                    <p className="text-sm">{Math.round(hour.temp_c)}°</p>
-                    <img src={hour.condition.icon} alt={hour.condition.text} />
-                    <p className="text-sm">
-                      {strftime("%l%P", new Date(date))}
-                    </p>
-                  </div>
-                );
-              })}
+                  return (
+                    <div className="w-12 text-center flex-none" key={i}>
+                      <p className="text-sm">{Math.round(hour.temp_c)}°</p>
+                      <img
+                        src={hour.condition.icon}
+                        alt={hour.condition.text}
+                      />
+                      <p className="text-sm">
+                        {strftime("%l%P", new Date(date))}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+            <div className="forecast-details"></div>
           </div>
-          <div className="forecast-details"></div>
         </div>
       ))}
     </div>
